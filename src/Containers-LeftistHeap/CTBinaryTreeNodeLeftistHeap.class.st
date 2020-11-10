@@ -60,11 +60,6 @@ CTBinaryTreeNodeLeftistHeap >> mergeBinaryTree: aTree [
 				  right: (aTree nextLink mergeBinaryTree: self) ]
 ]
 
-{ #category : #removing }
-CTBinaryTreeNodeLeftistHeap >> pop [
-	^ previousLink merge: nextLink
-]
-
 { #category : #accessing }
 CTBinaryTreeNodeLeftistHeap >> rank [
 	^ rank
