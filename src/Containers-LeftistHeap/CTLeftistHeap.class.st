@@ -1,38 +1,22 @@
 Class {
 	#name : #CTLeftistHeap,
-	#superclass : #Object,
-	#instVars : [
-		'representation'
-	],
+	#superclass : #CTBinaryTreeAbstract,
 	#category : #'Containers-LeftistHeap'
 }
 
 { #category : #creating }
-CTLeftistHeap class >> empty [
-	^ self basicNew
-		  representation: CTBinaryTreeEmptyLeftistHeap new;
-		  initialize;
+CTLeftistHeap >> binaryTreeElementEmpty [
+	^ CTBinaryTreeEmptyLeftistHeap new
+]
+
+{ #category : #creating }
+CTLeftistHeap >> binaryTreeElementLeaf: anObject [
+	^ (super binaryTreeElementLeaf: anObject)
+		  rank: 1;
 		  yourself
 ]
 
-{ #category : #removing }
-CTLeftistHeap >> pop [
-	^ representation root ignoreBlock: [ 
-		  representation := representation pop ]
-]
-
-{ #category : #adding }
-CTLeftistHeap >> push: anObject [
-	representation := representation mergeBinaryTree:
-		                  (CTBinaryTreeNodeLeftistHeap leaf: anObject)
-]
-
-{ #category : #accessing }
-CTLeftistHeap >> representation [
-	^ representation
-]
-
-{ #category : #accessing }
-CTLeftistHeap >> representation: anObject [
-	representation := anObject
+{ #category : #creating }
+CTLeftistHeap >> binaryTreeElementNode [
+	^ CTBinaryTreeNodeLeftistHeap new
 ]

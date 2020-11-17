@@ -24,40 +24,53 @@ CTBinaryTreeNodeLeftistHeap class >> left: leftHeap value: aValue rank: rank rig
 ]
 
 { #category : #actions }
-CTBinaryTreeNodeLeftistHeap >> insert: aValue left: leftHeap right: rightHeap [
-	| v w |
+CTBinaryTreeNodeLeftistHeap >> insert: aValue left: leftHeap right: rightHeap inBinaryTree: aBinaryTree [
+	| v w t |
 	v := leftHeap rank.
 	w := rightHeap rank.
-	^ v < w
-		  ifTrue: [ 
-			  self class
-				  left: rightHeap
-				  value: aValue
-				  rank: v + 1
-				  right: leftHeap ]
-		  ifFalse: [ 
-			  self class
-				  left: leftHeap
-				  value: aValue
-				  rank: w + 1
-				  right: rightHeap ]
+	(aBinaryTree is: v lessThan: w)
+		ifTrue: [ 
+			t := aBinaryTree
+				     leftBinaryTreeElement: rightHeap
+				     value: aValue
+				     rightBinaryTreeElement: leftHeap.
+			t rank: v + 1 ]
+		ifFalse: [ 
+			t := aBinaryTree
+				     leftBinaryTreeElement: leftHeap
+				     value: aValue
+				     rightBinaryTreeElement: rightHeap.
+			t rank: w + 1 ].
+	^ t
 ]
 
 { #category : #actions }
-CTBinaryTreeNodeLeftistHeap >> mergeBinaryTree: aTree [
-	| w |
-	w := aTree value.
-	^ value <= w
-		  ifTrue: [ 
-			  self
-				  insert: value
-				  left: previousLink
-				  right: (nextLink mergeBinaryTree: aTree) ]
-		  ifFalse: [ 
-			  self
-				  insert: w
-				  left: aTree previousLink
-				  right: (aTree nextLink mergeBinaryTree: self) ]
+CTBinaryTreeNodeLeftistHeap >> mergeBinaryTreeElement: aBTElement inBinaryTree: aBinaryTree [
+	^ aBTElement ifEmpty: [ self ] ifNotEmpty: [ 
+		  | y |
+		  y := aBTElement value.
+		  ((aBinaryTree is: value lessThan: y) or: [ 
+			   aBinaryTree is: value equalTo: y ])
+			  ifTrue: [ 
+				  | r |
+				  r := nextLink
+					       mergeBinaryTreeElement: aBTElement
+					       inBinaryTree: aBinaryTree.
+				  self
+					  insert: value
+					  left: previousLink
+					  right: r
+					  inBinaryTree: aBinaryTree ]
+			  ifFalse: [ 
+				  | r |
+				  r := self
+					       mergeBinaryTreeElement: aBTElement nextLink
+					       inBinaryTree: aBinaryTree.
+				  self
+					  insert: y
+					  left: aBTElement previousLink
+					  right: r
+					  inBinaryTree: aBinaryTree ] ]
 ]
 
 { #category : #accessing }
