@@ -7,22 +7,6 @@ Class {
 	#category : #'Containers-LeftistHeap'
 }
 
-{ #category : #creating }
-CTBinaryTreeNodeLeftistHeap class >> leaf: anObject [
-	^ self
-		  left: CTBinaryTreeEmptyLeftistHeap new
-		  value: anObject
-		  rank: 1
-		  right: CTBinaryTreeEmptyLeftistHeap new
-]
-
-{ #category : #creating }
-CTBinaryTreeNodeLeftistHeap class >> left: leftHeap value: aValue rank: rank right: rightHeap [
-	^ (self left: leftHeap value: aValue right: rightHeap)
-		  rank: rank;
-		  yourself
-]
-
 { #category : #actions }
 CTBinaryTreeNodeLeftistHeap >> insert: aValue left: leftHeap right: rightHeap inBinaryTree: aBinaryTree [
 	| v w t |
