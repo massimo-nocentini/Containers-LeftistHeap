@@ -3,7 +3,15 @@ Extension { #name : #CTSlotDescriptorsVisitor }
 { #category : #'*Containers-LeftistHeap-Visualizations' }
 CTSlotDescriptorsVisitor >> visitCTBinaryTreeElementLeftistHeap: aTreeElement [
 
-	^ (self visitCTDoubleValueLink: aTreeElement) asOrderedCollection
-		  add: #rank asSlotDescriptor afterIndex: 1;
-		  yourself
+	| descriptors |
+	descriptors := (self visitCTDoubleValueLink: aTreeElement)
+		               asOrderedCollection.
+
+	descriptors
+		add: (self newSlotDescriptor
+				 selector: #rank;
+				 yourself)
+		afterIndex: 1.
+
+	^ descriptors
 ]
