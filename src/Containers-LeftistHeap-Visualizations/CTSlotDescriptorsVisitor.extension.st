@@ -8,9 +8,7 @@ CTSlotDescriptorsVisitor >> visitCTBinaryTreeElementLeftistHeap: aTreeElement [
 		               asOrderedCollection.
 
 	descriptors
-		add: (self newSlotDescriptorSelector
-				 selector: #rank;
-				 yourself)
+		add: (self newSlotDescriptorSelector: #rank)
 		afterIndex: 1.
 
 	^ descriptors
