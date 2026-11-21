@@ -11,12 +11,18 @@ BaselineOfContainersLeftistHeap >> baseline: spec [
 	spec for: #common do: [ "Externals."
 		spec
 			baseline: 'ContainersEssentials'
-			with: [ 
-			spec repository: 'github://massimo-nocentini/Containers-Essentials' ].
+			with: [ spec repository: 'github://massimo-nocentini/Containers-Essentials:master' ].
+
+		spec
+			baseline: 'ContainersBinaryTreeAbstract'
+			with: [ spec repository: 'github://massimo-nocentini/Containers-BinaryTreeAbstract:master/src' ].
 
 		"Packages"
 		spec
-			package: 'Containers-LeftistHeap';
-			package: 'Containers-LeftistHeap-Visualizations';
-			package: 'Containers-LeftistHeap-Tests' ]
+			package: 'Containers-LeftistHeap'
+			with: [ spec requires: #( 'ContainersEssentials' 'ContainersBinaryTreeAbstract' ) ];
+			package: 'Containers-LeftistHeap-Visualizations'
+			with: [ spec requires: #( 'Containers-LeftistHeap' ) ];
+			package: 'Containers-LeftistHeap-Tests'
+			with: [ spec requires: #( 'Containers-LeftistHeap' ) ] ]
 ]
