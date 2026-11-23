@@ -2,10 +2,15 @@
 I am the baseline of `Containers-LeftistHeap`: I load the packages `Containers-LeftistHeap`, `Containers-LeftistHeap-Visualizations` and `Containers-LeftistHeap-Tests`, and the projects `Containers-Essentials` and `Containers-BinaryTreeAbstract` that they require.
 
 ```smalltalk
-Metacello new
+[ Metacello new
 	baseline: 'ContainersLeftistHeap';
-	repository: 'github://massimo-nocentini/Containers-LeftistHeap:master/src';
-	load
+	githubUser: 'massimo-nocentini'
+		project: 'Containers-LeftistHeap'
+		commitish: 'master'
+		path: 'src';
+	load ]
+		on: MCMergeOrLoadWarning
+		do: [ :warning | warning load ]
 ```
 "
 Class {
