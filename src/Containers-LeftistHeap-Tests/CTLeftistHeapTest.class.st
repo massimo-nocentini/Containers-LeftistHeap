@@ -1,5 +1,5 @@
 "
-A CTLeftistHeapTest is a test class for testing the behavior of CTLeftistHeap
+A `CTLeftistHeapTest` is a test class for testing the behavior of `CTLeftistHeap`
 "
 Class {
 	#name : #CTLeftistHeapTest,
