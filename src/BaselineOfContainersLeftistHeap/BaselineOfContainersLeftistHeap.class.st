@@ -1,3 +1,13 @@
+"
+I am the baseline of `Containers-LeftistHeap`: I load the packages `Containers-LeftistHeap`, `Containers-LeftistHeap-Visualizations` and `Containers-LeftistHeap-Tests`, and the projects `Containers-Essentials` and `Containers-BinaryTreeAbstract` that they require.
+
+```smalltalk
+Metacello new
+	baseline: 'ContainersLeftistHeap';
+	repository: 'github://massimo-nocentini/Containers-LeftistHeap:master/src';
+	load
+```
+"
 Class {
 	#name : #BaselineOfContainersLeftistHeap,
 	#superclass : #BaselineOf,

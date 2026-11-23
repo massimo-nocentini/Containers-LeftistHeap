@@ -1,3 +1,10 @@
+"
+I am a node of a `CTLeftistHeap`.
+
+When merged with another node, the lesser of the two values becomes the root, and the other node is merged with the right subtree of that root. Of the two subtrees of the result, the one with the greater rank goes to the left.
+
+My instance variable `rank` is one more than the rank of my right subtree.
+"
 Class {
 	#name : #CTBinaryTreeNodeLeftistHeap,
 	#superclass : #CTBinaryTreeNode,
